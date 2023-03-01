@@ -4,9 +4,12 @@ class PlantService {
         this.plants = db.plants;
     }
 
-    async getAll() {
+    async getAll(condition, order, pagination) {
         return this.plants.findAll({
-            where: {}
+            limit: pagination.limit,
+            offset: pagination.offset,
+            where: condition,
+            order: order
         }).catch(function (err) {
             console.log(err);
         });
